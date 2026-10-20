@@ -17,7 +17,9 @@
     "typecheck": "pnpm -r typecheck",
     "db:generate": "pnpm --filter @ftm/api db:generate",
     "db:migrate:local": "pnpm --filter @ftm/api db:migrate:local",
-    "db:migrate:remote": "pnpm --filter @ftm/api db:migrate:remote"
+    "db:migrate:remote": "pnpm --filter @ftm/api db:migrate:remote",
+    "build:cloudflare": "pnpm --filter @ftm/api typecheck && pnpm --filter @ftm/api exec wrangler deploy --dry-run --outdir dist --config wrangler.toml --env production",
+    "deploy:cloudflare": "deploy_commit=$(git rev-parse HEAD) && pnpm --filter @ftm/api exec wrangler deploy --config wrangler.toml --env production --keep-vars --message \"GitHub $deploy_commit\""
   },
   "devDependencies": {
     "typescript": "^5.7.3"
